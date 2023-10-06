@@ -19,7 +19,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  'POST /country': { action: 'country/get' },
+  'GET /country/:id': { action: 'country/id' },
+  'GET /country/repopulate': { action: 'country/repopulate' },
 
 
   /***************************************************************************
