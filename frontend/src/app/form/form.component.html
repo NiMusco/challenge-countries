@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()" class="mat-form">
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput placeholder="Capital" [(ngModel)]="formData.capital" name="capital">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput placeholder="Continent" [(ngModel)]="formData.continents" name="continents">
+    </mat-form-field>
+  
+    <button type="submit" mat-flat-button color="primary" style="vertical-align:middle; margin-left: 10px;">Search</button>
+</form>
