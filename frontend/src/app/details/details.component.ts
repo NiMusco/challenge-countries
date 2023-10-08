@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Country } from '../pages/countries/countries.component';
 import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CountryService } from '../services/countries.service';
 
 @Component({
   selector: 'app-country-details-dialog',
@@ -10,11 +12,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DetailsComponent implements OnInit {
   loading = true;
-  apiUrl = 'http://localhost:1337/country/';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public country: Country,
-    private http: HttpClient
+    private http: HttpClient,
+    private sanitizer: DomSanitizer,
+    private countryService: CountryService,
   ) {}
 
   ngOnInit() {
@@ -25,11 +28,10 @@ export class DetailsComponent implements OnInit {
   }
 
   fetchCountryDetails(id: string) {
-    const url = `${this.apiUrl}${id}`;
-    this.http.get<Country[]>(url).subscribe(
-      (data: Country[]) => {
-        if (data.length > 0) {
-          this.country = data[0];
+    this.countryService.getCountryById(id).subscribe(
+      (data: Country) => {
+        if (data) {
+          this.country = data;
         }
         this.loading = false; // Hide the loader after data is loaded
       },
@@ -38,5 +40,14 @@ export class DetailsComponent implements OnInit {
         this.loading = false; // Hide the loader in case of an error
       }
     );
+  }
+
+  getMapUrl(country: Country): SafeResourceUrl | null {
+    if (this.country && this.country.latitude && this.country.longitude) {
+      const apiKey = 'AIzaSyDJSM6G62g5UZolpoNuD-HkuYojAjvDvSc';  // Replace with your actual Google Maps API key
+      const url = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${this.country.latitude},${this.country.longitude}&zoom=5`;
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+    return null;
   }
 }

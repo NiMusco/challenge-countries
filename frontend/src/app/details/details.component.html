@@ -1,16 +1,40 @@
+<iframe
+  width="100%"
+  height="250"
+  frameborder="0"
+  style="border: 0"
+  [src]="getMapUrl(country)"
+  allowfullscreen
+  *ngIf="country?.latitude && country?.longitude"
+></iframe>
+
 <div class="overlay" *ngIf="loading">
   <mat-progress-spinner class="loader" mode="indeterminate"></mat-progress-spinner>
 </div>
 
-<div mat-dialog-content *ngIf="!loading">
-  <h1 mat-dialog-title><img *ngIf="country?.flag" [src]="country.flag" alt="Flag" width="50" style="vertical-align:middle; margin-right: 10px;"> {{ country?.name }}</h1>
-  <br><strong>Capital:</strong> {{ country.capital }}
-  <br><strong>Continents:</strong> {{ country.continents }}
-  <br><strong>Population:</strong> {{ country.population }}
-  <br><strong>Currencies:</strong> {{ country.currencies }}
-  <br><strong>Languages:</strong> {{ country.languages }}
-</div>
-
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true">Close</button>
+<div class="content" *ngIf="!loading">
+  <h1 class="title">
+    <img
+      *ngIf="country?.flag"
+      [src]="country.flag"
+      alt="Flag"
+      width="50"
+      style="vertical-align: middle; margin-right: 10px;"
+    />
+    {{ country.name }}
+  </h1>
+  <br /><strong>Capital:</strong> {{ country.capital }}
+  <br /><strong>Continents:</strong> {{ country.continents }}
+  <br /><strong>Population:</strong> {{ country.population }}
+  <br /><strong>Currencies:</strong> {{ country.currencies }}
+  <br /><strong>Languages:</strong>
+  <mat-chip
+    *ngFor="let lang of country.languages"
+    color="primary"
+    style="margin: 2px;"
+  >
+    {{ lang.code }} - {{ lang.name }}
+  </mat-chip>
+  <br /><strong>Latitude:</strong> {{ country.latitude }}
+  <br /><strong>Longitude:</strong> {{ country.longitude }}
 </div>

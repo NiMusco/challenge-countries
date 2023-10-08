@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { DialogService } from '../../dialog.service';
+import { CountryService } from '../../services/countries.service';
 
 export interface Country {
   ccn3: string;
@@ -12,8 +13,15 @@ export interface Country {
   continents: string;
   population: string;
   currencies: string;
-  languages: string;
   flag: string;
+  latitude: string;
+  longitude: string;
+  languages: Language[];
+}
+
+export interface Language {
+  code: string;
+  name: string;
 }
 
 @Component({
@@ -30,7 +38,8 @@ export class CountriesComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private countryService: CountryService,
   ) {}
 
   @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
@@ -49,15 +58,10 @@ export class CountriesComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  getCountries(formData: any) {
-    const apiUrl = 'http://localhost:1337/country';
-    return this.http.post<Country[]>(apiUrl, formData);
-  }
-
+  
   handleFormSubmit(formData: any) {
     this.loading = true; // Show the loader
-    this.getCountries(formData).subscribe(
+    this.countryService.getCountries(formData).subscribe(
       (data: Country[]) => {
         this.dataSource.data = data;
         this.loading = false; // Hide the loader once data is fetched

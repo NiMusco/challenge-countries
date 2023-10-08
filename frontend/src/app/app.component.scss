@@ -1,0 +1,48 @@
+.sidebar {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    width: 80px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    top: 0;
+}
+  
+  /* Rest of your CSS remains unchanged */
+  
+  
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+  
+.sidebar a:hover {
+    background-color: #444;
+}
+  
+.main-content {
+    margin-left: 80px;
+    padding: 20px;
+}
+  
+mat-card {
+    margin: 10px;
+    cursor: pointer;
+}
+  
+mat-card-content {
+    display: flex;
+    align-items: center;
+}
+  
+.icon {
+    margin-right: 10px;
+}
+  
+  

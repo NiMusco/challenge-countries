@@ -5,11 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 //Layout
 import { AppComponent } from './app.component';
@@ -19,10 +14,18 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 
 //Mat
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
 //Custom components
 import { CountriesComponent } from './pages/countries/countries.component';
@@ -49,7 +52,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatListModule,
+    MatIconModule,
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
@@ -58,6 +61,9 @@ const routes: Routes = [
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
+    MatCardModule,
+    MatChipsModule,
     FormsModule,
     RouterModule.forRoot(routes),
   ],
