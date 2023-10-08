@@ -9,12 +9,14 @@
  */
 
 module.exports.policies = {
-  CountryController: {
-    // Allow anyone to access the endpoint of countries.
-    'get': true,
 
-    // Only allow authorized host to make this call.
-    // (runs the policy in api/policies/isCrawler.js)
-    'repopulate': 'isCrawler',
-  }
+  /***************************************************************************
+  *                                                                          *
+  * Default policy for all controllers and actions, unless overridden.       *
+  * (`true` allows public access)                                            *
+  *                                                                          *
+  ***************************************************************************/
+
+  // '*': true,
+
 };

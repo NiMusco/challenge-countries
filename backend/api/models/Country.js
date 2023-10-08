@@ -31,11 +31,21 @@ module.exports = {
     currencies: {
       type: 'string',
     },
-    languages: {
-      type: 'string',
-    },
     flag: {
       type: 'string',
+    },
+    map: {
+      type: 'string',
+    },
+    latitude: {
+      type: 'string', //signed int
+    },
+    longitude: {
+      type: 'string', //signed int
+    },
+    languages: {
+      collection: 'language',
+      via: 'countries',
     }
   },
 

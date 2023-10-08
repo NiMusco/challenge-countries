@@ -21,7 +21,9 @@ module.exports.routes = {
 
   'POST /country': { action: 'country/get' },
   'GET /country/:id': { action: 'country/id' },
-  'GET /country/repopulate': { action: 'country/repopulate' },
+  'GET /country/language': { action: 'country/language' },
+
+  'GET /country/update': { action: 'country/update' },
 
 
   /***************************************************************************

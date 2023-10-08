@@ -35,6 +35,6 @@ module.exports.datastores = {
   default: {
 
     adapter: 'sails-mysql',
-    url: 'mysql://root@localhost:3306/challenge_flags',
+    url: 'mysql://root@localhost:3306/challenge_countries',
   },
 };

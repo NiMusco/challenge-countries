@@ -8,7 +8,7 @@
   *ngIf="country?.latitude && country?.longitude"
 ></iframe>
 
-<div class="overlay" *ngIf="loading">
+<div *ngIf="loading">
   <mat-progress-spinner class="loader" mode="indeterminate"></mat-progress-spinner>
 </div>
 

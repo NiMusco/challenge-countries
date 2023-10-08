@@ -1,0 +1,21 @@
+{
+  "name": "challenge-countries",
+  "version": "1.0.0",
+  "description": "A countries challenge with Angular and Node.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nimusco/challenge-countries.git"
+  },
+  "author": "Nico Musco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nimusco/challenge-countries/issues"
+  },
+  "homepage": "https://github.com/nimusco/challenge-countries#readme",
+  "scripts": {
+    "start": "npm run frontend:serve & npm run backend:lift",
+    "frontend:serve": "cd frontend && ng serve",
+    "backend:lift": "cd backend && sails lift"
+  }
+}
