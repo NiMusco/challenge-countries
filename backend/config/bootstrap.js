@@ -15,19 +15,19 @@ const cron = require('node-cron');
 module.exports.bootstrap = async function() {
 
   try {
-    
-    sails.log.info("          ________");
-    sails.log.info("      ,o88~~88888888o,");
-    sails.log.info("     ,~~?8P  88888     8,");
-    sails.log.info("    d  d88 d88 d8_88     b");
-    sails.log.info("   d  d888888888          b");
-    sails.log.info("   8,?88888888  d8.b o.   8");
-    sails.log.info("   8~88888888~ ~^8888\\ db 8");
-    sails.log.info("   ?  888888          ,888P");
-    sails.log.info("    ?  \`8888b,_      d888P");
-    sails.log.info("     \`   8888888b   ,888'");
-    sails.log.info("        ~-?8888888 _.P-~");
-    sails.log.info("            ~~~~~~");
+
+    sails.log.info('          ________');
+    sails.log.info('      ,o88~~88888888o,');
+    sails.log.info('     ,~~?8P  88888     8,');
+    sails.log.info('    d  d88 d88 d8_88     b');
+    sails.log.info('   d  d888888888          b');
+    sails.log.info('   8,?88888888  d8.b o.   8');
+    sails.log.info('   8~88888888~ ~^8888\\ db 8');
+    sails.log.info('   ?  888888          ,888P');
+    sails.log.info('    ?  \`8888b,_      d888P');
+    sails.log.info('     \`   8888888b   ,888"');
+    sails.log.info('        ~-?8888888 _.P-~');
+    sails.log.info('            ~~~~~~');
 
     //Run on start.
     await CountryService.updateCountries();
@@ -38,7 +38,7 @@ module.exports.bootstrap = async function() {
       sails.log.info('Cron job started...');
       const result = await CountryService.updateCountries();
     });
-    
+
   } catch (error) {
     sails.log.error('Error seeding data:', error);
   }

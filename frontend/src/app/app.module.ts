@@ -33,41 +33,41 @@ import { FormComponent } from './form/form.component';
 import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
-  { path: 'countries', component: CountriesComponent },
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route
-  /*{ path: '**', component: PageNotFoundComponent }*/  // Wildcard route for 404
+    { path: 'countries', component: CountriesComponent },
+    { path: 'home', component: HomeComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route
+    /*{ path: '**', component: PageNotFoundComponent }*/  // Wildcard route for 404
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    HomeComponent,
-    CountriesComponent,
-    FormComponent,
-    DetailsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatIconModule,
-    MatTableModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatChipsModule,
-    FormsModule,
-    RouterModule.forRoot(routes),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MenuComponent,
+        HomeComponent,
+        CountriesComponent,
+        FormComponent,
+        DetailsComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatIconModule,
+        MatTableModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+        MatCardModule,
+        MatChipsModule,
+        FormsModule,
+        RouterModule.forRoot(routes),
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

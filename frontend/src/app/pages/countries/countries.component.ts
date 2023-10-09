@@ -24,14 +24,26 @@ export interface Language {
   name: string;
 }
 
+export interface FormInputData {
+  name: string;
+  capital: string;
+  continents: string;
+}
+
+function getDefaultFormData(): FormInputData {
+  return {
+    name: '',
+    capital: '',
+    continents: ''
+  };
+}
+
 @Component({
   selector: 'app-countries',
   templateUrl: './countries.component.html',
   styleUrls: ['./countries.component.scss']
 })
-
 export class CountriesComponent implements OnInit {
-
   loading = false;
   displayedColumns: string[] = ['flag', 'name', 'capital', 'continents', 'population', 'currencies', 'languages'];
   dataSource = new MatTableDataSource<Country>();
@@ -51,28 +63,34 @@ export class CountriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.handleFormSubmit({});
+    const formData = getDefaultFormData();
+    this.handleFormSubmit(formData);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  handleFormSubmit(formData: FormInputData) {
+    const convertedFormData = new FormData();
+    convertedFormData.append('name', formData.name);
+    convertedFormData.append('capital', formData.capital);
+    convertedFormData.append('continents', formData.continents);
   
-  handleFormSubmit(formData: any) {
-    this.loading = true; // Show the loader
-    this.countryService.getCountries(formData).subscribe(
+    this.loading = true;
+    this.countryService.getCountries(convertedFormData as FormData).subscribe(
       (data: Country[]) => {
         this.dataSource.data = data;
-        this.loading = false; // Hide the loader once data is fetched
+        this.loading = false;
       },
       error => {
         console.error('Error fetching data from the API:', error);
-        this.loading = false; // Hide the loader in case of an error
+        this.loading = false;
       }
     );
-  }  
-
+  }
+  
   onRowClicked(row: Country) {
     this.dialogService.openDetailsDialog(row);
   }

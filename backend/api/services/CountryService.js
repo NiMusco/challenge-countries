@@ -38,19 +38,28 @@ module.exports = {
             for (const language of languages) {
                 languageMap[language.code] = language.id;
             }
-            
+
+            let countriesToInsert = [];
             const processedCountries = [];
+            
+            // Process countries in chunks
+            for (let i = 0; i < countriesData.length; i += chunkSize) {
+              const chunk = countriesData.slice(i, i + chunkSize);
 
-            for (const countryData of countriesData) {
+              for (const countryData of chunk) {
                 const existingCountry = existingCountries.find(country => {
-                    return country.ccn3 === Number(countryData.ccn3);
+                  return country.ccn3 === Number(countryData.ccn3);
                 });
-
+      
                 if (existingCountry) {
-                    // Update the existing record
-                    await Country.updateOne({ id: existingCountry.id }).set(formatCountryData(countryData, languageMap));
-                    processedCountries.push(existingCountry.ccn3);
+                  // Update the existing record
+                  await Country.updateOne({ id: existingCountry.id }).set(formatCountryData(countryData, languageMap));
+                  processedCountries.push(existingCountry.ccn3);
+                } else {
+                  // Create new records for countries not already in the database
+                  countriesToInsert.push(formatCountryData(countryData, languageMap));
                 }
+              }
             }
             
             // Delete records that were not updated (no longer in the JSON)
@@ -61,7 +70,7 @@ module.exports = {
             }
 
             // Create new records for countries not already in the database
-            const countriesToInsert = countriesData
+            countriesToInsert = countriesData
                 .filter(countryData => {
                     return !existingCountries.some(existingCountry => existingCountry.ccn3 === Number(countryData.ccn3));
                 })

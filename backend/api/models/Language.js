@@ -6,20 +6,19 @@
  */
 
 module.exports = {
-    attributes: {
-      code: {
-        type: 'string',
-        required: true
-      },
-      name: {
-        type: 'string',
-        required: true
-      },
-      countries: {
-        collection: 'country',
-        via: 'languages',
-        dominant: true
-      }
+  attributes: {
+    code: {
+      type: 'string',
+      required: true
+    },
+    name: {
+      type: 'string',
+      required: true
+    },
+    countries: {
+      collection: 'country',
+      via: 'languages',
+      dominant: true
     }
+  }
 };
-  

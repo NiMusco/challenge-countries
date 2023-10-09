@@ -3,12 +3,12 @@
   height="250"
   frameborder="0"
   style="border: 0"
-  [src]="getMapUrl(country)"
+  [src]="getMapUrl()"
   allowfullscreen
   *ngIf="country?.latitude && country?.longitude"
 ></iframe>
 
-<div *ngIf="loading">
+<div class="overlay" *ngIf="loading">
   <mat-progress-spinner class="loader" mode="indeterminate"></mat-progress-spinner>
 </div>
 
